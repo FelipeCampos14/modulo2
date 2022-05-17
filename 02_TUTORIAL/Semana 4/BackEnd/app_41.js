@@ -4,7 +4,7 @@ const path = require("path")
 const app = express();
 
 const hostname = 'localhost';
-const port = 3022;
+const port = 3041;
 app.use(express.static(path.join(__dirname,"public")));
 
 app.listen(port, () => {

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 2</title>
+</head>
+<body>
+    <h2>Exercício 2</h2>
+    
+    <label>Preço do produto:</label>
+    <input id="preço" type="number" max="1000">
+    <button onclick="calculo()">Ver a quantidade de notas</button>
+    <script>
+        function calculo() {
+            var preço = document.getElementById("preço").value;
+            var preçoInicial = preço;
+            if (preço >= 100){
+                var notas100 = Math.floor(preço/100);
+                preço -= notas100*100;
+            }
+            if (preço >= 50){
+                preço -= 50;
+                var notas50 = 1;
+            }
+            if (preço >= 20){
+                var notas20 = Math.floor(preço/20);
+                preço -= notas20*20;
+            }
+            if (preço >= 10) {
+                preço -= 10;
+                var notas10 = 1;
+            }
+            if (preço >= 5) {
+                preço -= 5;
+                var notas5 = 1;
+            }
+            if (preço >=1) {
+                var notas1 = preço;
+            }
+            var notas100 = Math.floor(preço/100);
+            var notas50 = 1;
+            var notas20 = Math.floor(preço/20);
+
+
+
+            alert("notas de 100: "+notas100+" | notas de 50: "+notas50+" | notas de 20: "+notas20+" | notas de 10: "+notas10+" | notas de 5: "+notas5+" | notas de 1: "+notas1);
+        }
+    </script>
+</body>
+</html>
