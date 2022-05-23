@@ -1,35 +1,54 @@
-// ARRUMAR O CÓDIGO, APLICAR O PASSO 8.3 DA ETAPA 5
-
 const express = require('express'); 
-const path = require("path")
-const app = express();
+const bodyParser = require('body-parser');
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const hostname = '127.0.0.1';
 
-const hostname = 'localhost';
-const port = 3051;
-const sqlite3 = require('sqlite3').verbose(); 
-const DBPATH = 'dbUser.db'; 
-app.use(express.static(path.join(__dirname,"public")));
+
+const port = 3052;
+const sqlite3 = require('sqlite3').verbose();
+const app = express();
+const DBPATH = 'dbUser.db';
+
+
+app.use(express.static("../frontend/"));
+
+
 app.use(express.json());
 
-app.get('/user1', (req, res) => {
-res.statusCode = 200;
-//res.setHeader('Content-Type', 'text/html');
-res.setHeader('Access-Control-Allow-Origin', '*');
-var db = new sqlite3.Database(DBPATH);
-var sql = 'SELECT * FROM tbUser WHERE userId = 1';
-db.get(sql, [], (err, row) => {
-    if (err) {
-    throw err;
-    }
-    //res.write("<h1> Teste do banco de dados</h1>") 
-    //res.write("<h4> Informacoes do usuario cujo id = 1: </h2>") 
-    //res.write("title = " + row.title); 
-    //res.write("<br />completed = " + row.completed); 
-    res.json(row);
-});
+
+/* Definição dos endpoints */
+app.get('/users', (req, res) => {
+	res.statusCode = 200;
+	res.setHeader('Access-Control-Allow-Origin', '*');
+
+	var db = new sqlite3.Database(DBPATH);
+  var sql = 'SELECT * FROM tbUser ORDER BY title COLLATE NOCASE';
+	db.all(sql, [],  (err, rows ) => {
+		if (err) {
+		    throw err;
+		}
+		res.json(rows);
+	});
+	db.close();
 });
 
 
-app.listen(port, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+app.post('/userinsert', urlencodedParser, (req, res) => {
+	res.statusCode = 200;
+	res.setHeader('Access-Control-Allow-Origin', '*'); 
+
+	sql = "INSERT INTO tbUser (title, id, completed) VALUES ('" + req.body.title + "', 33, false)";
+	var db = new sqlite3.Database(DBPATH); 
+	db.run(sql, [],  err => {
+		if (err) {
+		    throw err;
+		}
+	});
+	db.close();
+	res.end();
+});
+
+/* Inicia o servidor */
+app.listen(port, hostname, () => {
+  console.log(`BD server running at http://${hostname}:${port}/`);
 });

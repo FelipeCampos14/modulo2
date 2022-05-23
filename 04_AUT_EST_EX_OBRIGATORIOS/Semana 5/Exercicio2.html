@@ -36,16 +36,15 @@
                 preço -= 5;
                 var notas5 = 1;
             }
-            if (preço >=1) {
-                var notas1 = preço;
+            if (preço >=2) {
+                var notas2 = Math.floor(preço/2);
+                preço -= notas2*2;
             }
-            var notas100 = Math.floor(preço/100);
-            var notas50 = 1;
-            var notas20 = Math.floor(preço/20);
+            if (preço =1) {
+                var notas1 = 1;
+            }
 
-
-
-            alert("notas de 100: "+notas100+" | notas de 50: "+notas50+" | notas de 20: "+notas20+" | notas de 10: "+notas10+" | notas de 5: "+notas5+" | notas de 1: "+notas1);
+            alert("notas de 100: "+notas100+" | notas de 50: "+notas50+" | notas de 20: "+notas20+" | notas de 10: "+notas10+" | notas de 5: "+notas5+" | notas de 2: "+notas2+" notas de 1: "+notas1);
         }
     </script>
 </body>

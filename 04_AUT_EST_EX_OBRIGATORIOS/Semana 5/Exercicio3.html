@@ -4,14 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Exercício 3</title>
 </head>
 <body>
-    <input id="lista" type="text" placeholder="colocar a lista com os números separados por vírgulas">
+    <label>colocar a lista com os números separados por vírgulas: </label>
+    <input id="lista" type="text" placeholder="Ex: 3,1,2...">
+    <br>
+    <label>Coloque um número que esteja na lista</label>
+    <input id="especial" type="number">
     <button onclick="Ordenar()">Ordenar</button>
+    </div>
     <script>
         function Ordenar() {
-            var lista = document.getElementById("lista")
+            var lista = document.getElementById("lista").value.split(",");
+            var listaOrdenada = lista.sort();
+            console.log(listaOrdenada);
+            var especial = document.getElementById("especial").value;
+            if (listaOrdenada == especial) {
+                
+            }
         }
     </script>
 </body>
