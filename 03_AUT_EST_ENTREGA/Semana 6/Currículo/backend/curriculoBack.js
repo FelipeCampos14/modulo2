@@ -2,14 +2,14 @@ const express = require('express');
 const app = express();
 
 const hostname = '127.0.0.1';
-const port = 3052;
+const port = 3101;
 const sqlite3 = require('sqlite3').verbose(); 
-const DBPATH = 'dbUser.db'; 
+const DBPATH = 'dbCurriculo.db'; 
 
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-app.use(express.static("../FrontEnd/"));
+app.use(express.static("../frontend/"));
 
 app.use(express.json());
 
@@ -18,7 +18,7 @@ app.get('/users', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
   var db = new sqlite3.Database(DBPATH);
-  var sql = 'SELECT * FROM tbUser ORDER BY title COLLATE NOCASE';
+  var sql = 'SELECT * FROM tbCurriculo ORDER BY cpf COLLATE NOCASE';
   db.all(sql, [],  (err, rows ) => {
       if (err) {
           throw err;

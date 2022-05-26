@@ -10,19 +10,23 @@
     <label>colocar a lista com os números separados por vírgulas: </label>
     <input id="lista" type="text" placeholder="Ex: 3,1,2...">
     <br>
-    <label>Coloque um número que esteja na lista</label>
+    <label>Coloque um número que esteja na lista: </label>
     <input id="especial" type="number">
+    <br>
     <button onclick="Ordenar()">Ordenar</button>
     </div>
     <script>
         function Ordenar() {
             var lista = document.getElementById("lista").value.split(",");
-            var listaOrdenada = lista.sort();
-            console.log(listaOrdenada);
-            var especial = document.getElementById("especial").value;
-            if (listaOrdenada == especial) {
-                
+            var length = lista.length;
+            for (var i = 0;i<length;i++) {
+                for(var j = 0; j<length - i - 1; j ++) {
+                    if (matriz [j] > matriz [j+1]) {
+                        lista.swap (j, j+1)
+                    }
+                }
             }
+            return lista;
         }
     </script>
 </body>
