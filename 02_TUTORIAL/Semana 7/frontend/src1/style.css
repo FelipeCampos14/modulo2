@@ -44,6 +44,12 @@ button {
 #get{
     color: #a34f74;
 }
+#getDB{
+    color: #5b4696; 
+}
 .button-get{
     background-color: #a34f74;
+}
+.button-get-db{
+    background-color: #5b4696;
 }

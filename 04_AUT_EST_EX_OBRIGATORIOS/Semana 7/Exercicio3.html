@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 3</title>
+</head>
+<body>
+    <input id="celular" placeholder="(XX)XXXX-XXXX" maxlength="13" >
+    <button onclick="send()">Enviar</button>
+    <script>
+        function send() {
+            var celular = document.getElementById("celular").value;
+            var num = 0;
+            var inteiros = [celular[1],celular[2],celular[4],celular[5],celular[6],celular[7],celular[9],celular[10],celular[11],celular[12]]
+            var teste = celular[11];
+            for (var i = inteiros;i <= inteiros.length; i++) {
+                if (isNaN(i) == false) {
+                    num +=1;
+                }
+            }
+
+
+
+            if (celular[0] == "(" && celular[3] == ")" && celular[8] == "-" && num == 11 ) {
+                alert("worked"); 
+            }
+            else {
+                alert("not worked");
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!--
+            console.log(i + isNaN(i))
+            console.log(celular + isNaN(celular))
+
+            console.log(celular[1])
+            console.log(isNaN(celular[1]))
+            console.log(celular[2])
+            console.log(isNaN(celular[2]))
+            console.log(celular[4])
+            console.log(isNaN(celular[4]))
+            console.log(celular[5])
+            console.log(isNaN(celular[5]))
+            console.log(celular[6])
+            console.log(isNaN(celular[6]))
+            console.log(celular[7])
+            console.log(isNaN(celular[7]))
+            console.log(celular[9])
+            console.log(isNaN(celular[9]))
+            console.log(celular[10])
+            console.log(isNaN(celular[10]))
+            console.log(celular[11])
+            console.log(isNaN(celular[11]))
+            console.log(celular[12])
+            console.log(isNaN(celular[12]))
+            
+-->

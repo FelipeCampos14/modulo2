@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 4</title>
+</head>
+<body>
+    <input id="pessoas" placeholder="coloque um numero inteiro">
+    <input id="periodo" type="text" placeholder="diurno">
+    <button onclick="calcular()">calcular preço</button>
+    <script>
+        function calcular() {
+            var pessoas = document.getElementById("pessoas").value;
+            var periodo = document.getElementById("periodo").value;
+            var periodoLower = periodo.toLowerCase();
+            if (Number.isInteger(pessoas)) {
+                if (periodoLower == "noturno") {
+                    if (pessoas > 50) {
+                        console.log(pessoas*80 + " reais");
+                    }
+                    else {
+                        console.log(pessoas*100 + " reais");
+                    }
+                }
+                else if (periodoLower == "diurno") {
+                    if (pessoas > 50) {
+                        console.log(pessoas*120 + " reais")
+                    }
+                    else {
+                        console.log(pessoas*200 + " reais")
+                    }
+                }
+                else {
+                    console.log("coloque diurno ou noturno");
+                }
+            }
+            else {
+                console.log("coloque um número inteiro");
+            }
+            console.log(Number.isInteger(pessoas))
+        }
+    </script>
+</body>
+</html>

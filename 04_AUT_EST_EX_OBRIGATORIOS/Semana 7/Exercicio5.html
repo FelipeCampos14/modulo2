@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 5</title>
+</head>
+<body>
+    <input id="alunos">
+    <button onclick="campoNota()">Adicionar campos de nota</button>
+    <hr>
+    <div id="campoNotaDiv"></div>
+    <div id="buttonDiv"></div>
+    <div id="resultadosDiv"></div>
+
+    <script>
+        function campoNota() {
+            var alunos = document.getElementById("alunos").value;           
+            var campoNota = document.getElementById("campoNotaDiv");
+            var button = document.getElementById("buttonDiv");
+            var campos = ''
+
+            for (i=1;i-1<alunos;i++) {
+                campos += "<label>Nota Prova Aluno "+i+": </label> <input id='notaProva"+i+"'> <br> <label>Nota Trabalho Aluno "+i+": </label> <input id='notaTrabalho"+i+"'> <br>"    
+            }
+
+            campoNota.innerHTML = campos;
+            button.innerHTML = "<button onclick='calcular()'>calcular</button>"
+        }
+
+        function calcular() {
+            var alunos = document.getElementById("alunos").value; 
+            
+            var resultadosDiv = document.getElementById("resultadosDiv");
+            var resultados = ''
+
+            var mediaGeral = 0;
+            var mediaProva = 0;
+            var mediaTrabalho = 0;
+
+            for (i=1;i-1<alunos;i++) {
+                var notaProvaStr = "notaProva"+String(i);
+                var notaProva = document.getElementById(notaProvaStr).value;
+
+                var notaTrabalhoStr = "notaTrabalho"+String(i); 
+                var notaTrabalho = document.getElementById(notaTrabalhoStr).value;
+
+                var media = (notaProva*2 + notaTrabalho*3)/5;
+
+                mediaGeral += parseFloat(media/alunos);
+                mediaProva += parseFloat(notaProva/alunos);
+                mediaTrabalho += parseFloat(notaTrabalho/alunos);
+
+                resultados += "<p>Média do aluno:"+media+"</p>";
+            }
+            
+            resultados += "<p>Média geral:"+mediaGeral+"</p>" + "<p>Média das Provas:"+mediaProva+"</p>" + "<p>Média das Trabalhos:"+mediaTrabalho+"</p>";
+            resultadosDiv.innerHTML = resultados;
+            console.log(notaProva)
+        }
+    </script>
+
+</body>
+</html>
+
+<!--      
+        <script>
+        function campoNota() {
+        var alunos = document.getElementById("alunos").value;           
+            var campoNota = document.getElementById("campoNotaDiv");
+            var button = document.getElementById("buttonDiv");
+            let elements = ''
+            for (i=1;i-1<alunos;i++) {
+                elements += "<label>Nota Prova Aluno "+i+": </label> <input id='notaProva"+i+"'> <br> <label>Nota Trabalho Aluno "+i+": </label> <input id='notaTrabalho"+i+"'> <br>" 
+            }
+            campoNota.innerHTML = elements;
+            button.innerHTML = "<button onclick='calcular()'>calcular</button>"
+        }
+        function calcular() {
+            var notaProva = document.getElementById("notaProva").value;
+            var notaTrabalho = document.getElementById("notaTrabalho").value;
+            var resultados = document.getElementById("resultados");
+            var media = (notaProva*2 + notaTrabalho*3)/5
+            resultados.innerHTML = "<p>Nota do aluno:"+media+"</p>"
+        }
+    </script> 
+-->

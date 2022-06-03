@@ -26,3 +26,9 @@ function Voltar() {
     geral.removeChild(box3);
     button.innerHTML = "<button id='button' onclick='Text()'>Conquistas Acadêmicas</button>"
 }
+ function dados() {
+     $.get('http://127.0.0.1:3101/users',(res) => {
+         console.log(res);
+     }
+     )
+ }
