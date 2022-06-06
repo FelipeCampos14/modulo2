@@ -1,20 +1,49 @@
-const http = require('http');
-const fs   = require("fs")
+const express = require('express'); 
+const app = express();
+
 const hostname = '127.0.0.1';
-const port = 3103;
-const server = http.createServer((req, res) => {
+const port = 3106;
+const sqlite3 = require('sqlite3').verbose(); 
+const DBPATH = 'dbCurriculo.db'; 
+
+const bodyParser = require('body-parser');
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+app.use(express.static("../frontend/"));
+
+app.use(express.json());
+
+app.get('/users', (req, res) => {
   res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
-  fs.readFile('../frontend/curriculo.html', null, function (error, data) {
-      if (error) {
-          res.writeHead(404);
-          res.write('Whoops! File not found!');
-      } else {
-          res.write(data);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  var db = new sqlite3.Database(DBPATH);
+  var sql = 'SELECT * FROM tbCurriculo ORDER BY cpf COLLATE NOCASE';
+  db.all(sql, [],  (err, rows ) => {
+      if (err) {
+          throw err;
       }
-      res.end();
+      res.json(rows);
   });
+  db.close();
 });
-server.listen(port, hostname, () => {
+
+
+app.post('/userinsert', urlencodedParser, (req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Access-Control-Allow-Origin', '*'); 
+
+  sql = "INSERT INTO tbUser (title, id, completed) VALUES ('" + req.body.title + "', 33, false)";
+  var db = new sqlite3.Database(DBPATH); 
+  db.run(sql, [],  err => {
+      if (err) {
+          throw err;
+      }
+  });
+  db.close();
+  res.end();
+});
+
+app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });

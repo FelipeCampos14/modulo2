@@ -3,9 +3,9 @@
 <head>
 	<meta charset="UTF-8" />	
 	<title>Currículo</title>
-	<link rel="stylesheet" href="curriculo.css">
+	<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="Inicio()">
 	<div id="caixa" class="container" style="height: 470px">
 		<div class="desc">
 			<img class ="imagem" src="https://media-exp1.licdn.com/dms/image/C4D03AQF_5fa6pib_Xg/profile-displayphoto-shrink_400_400/0/1649270872125?e=1656547200&v=beta&t=LX_-PnK8_ovB1uB_o2zMUzG-Z0p1wwSlqYsIgcF49co"> 
@@ -15,6 +15,10 @@
 			<h3>Mais sobre mim</h3>
 			<p>Tenho 18 anos</p>
 			<p>Moro em São Paulo</p>
+			<button class="button" href="http://127.0.0.1:3106/users">Dados</button>
+			<div id="but">
+				<button class="button" onclick="Text()">Conquistas Acadêmicas</button>
+			</div>
 		</div>
 		<div class="vl"></div>
 		<div id="box1">
@@ -31,7 +35,7 @@
 			<hr>
 			<h3>Idiomas</h3>
 			<ul>Inglês: Avançado</ul>
-			<ul>Português: Fluente</ul>
+			<ul>Português: Nativo</ul>
 			<hr>
 			<h3>Contatos:</h3>
 			<ul>
@@ -40,6 +44,11 @@
 			<ul>
 				<a href="https://www.linkedin.com/in/felipe-pereira-campos-250aa2231/"><img style ="width: 50px;" src="https://e3ba6e8732e83984.cdn.gocache.net/uploads/image/file/549999/regular_linkedin-logo-3.png" ></a>
 			</ul>	
-	</div>	
+		</div>
+		<div id="box2">
+			<p>Aqui estão algumas conquistas acadêmicas:</p>
+		</div>
+		<div id="box3"></div></div>
+<script src="script.js"></script>
 </body>
 </html>
