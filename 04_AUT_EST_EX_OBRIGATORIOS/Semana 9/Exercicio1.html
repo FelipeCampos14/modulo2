@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="num">Digite um número com três dígitos: </label>
+    <input id="num">
+    <button onclick="centena()">par ou ímpar?</button>
+    <div id="resultado"></div>
+    <script>
+        function centena() {
+            var resultadoDiv = document.getElementById("resultado");
+            var numTodo = String(document.getElementById("num").value);
+            var numArray = numTodo.split("");
+            var numInvertido = numArray.reverse();
+            if (numInvertido[0]%2 == 1) {
+                resultadoDiv.innerHTML = `${numTodo} é impar!`
+            }
+            else {
+                resultadoDiv.innerHTML = `${numTodo} é par!`
+            }
+            console.log(numInvertido)
+        }
+    </script>
+</body>
+</html>

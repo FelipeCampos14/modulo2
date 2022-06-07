@@ -18,7 +18,7 @@ app.get('/users', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
   var db = new sqlite3.Database(DBPATH);
-  var sql = 'SELECT * FROM tbCurriculo ORDER BY cpf COLLATE NOCASE';
+  var sql = 'SELECT * FROM tbCurriculo ORDER BY email COLLATE NOCASE';
   db.all(sql, [],  (err, rows ) => {
       if (err) {
           throw err;
@@ -33,7 +33,7 @@ app.post('/userinsert', urlencodedParser, (req, res) => {
   res.statusCode = 200;
   res.setHeader('Access-Control-Allow-Origin', '*'); 
 
-  sql = "INSERT INTO tbUser (title, id, completed) VALUES ('" + req.body.title + "', 33, false)";
+  sql = "INSERT INTO tbCurriculo (email, name, lastname) VALUES ('" + req.body.title + "', 33, false)";
   var db = new sqlite3.Database(DBPATH); 
   db.run(sql, [],  err => {
       if (err) {
