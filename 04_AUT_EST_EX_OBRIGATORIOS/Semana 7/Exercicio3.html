@@ -13,17 +13,15 @@
         function send() {
             var celular = document.getElementById("celular").value;
             var num = 0;
-            var inteiros = [celular[1],celular[2],celular[4],celular[5],celular[6],celular[7],celular[9],celular[10],celular[11],celular[12]]
-            var teste = celular[11];
-            for (var i = inteiros;i <= inteiros.length; i++) {
-                if (isNaN(i) == false) {
+            var inteiros = [parseInt(celular[1]),parseInt(celular[2]),parseInt(celular[4]),parseInt(celular[5]),parseInt(celular[6]),parseInt(celular[7]),parseInt(celular[9]),parseInt(celular[10]),parseInt(celular[11]),parseInt(celular[12])]
+            for (var i = 0; i <= inteiros.length; i++) {
+                if (Number.isInteger(inteiros[i])) {
                     num +=1;
                 }
             }
-
-
-
-            if (celular[0] == "(" && celular[3] == ")" && celular[8] == "-" && num == 11 ) {
+            console.log(num)
+            console.log(inteiros)  
+            if (celular[0] == "(" && celular[3] == ")" && celular[8] == "-" && num == 10) {
                 alert("worked"); 
             }
             else {
@@ -33,30 +31,3 @@
     </script>
 </body>
 </html>
-
-<!--
-            console.log(i + isNaN(i))
-            console.log(celular + isNaN(celular))
-
-            console.log(celular[1])
-            console.log(isNaN(celular[1]))
-            console.log(celular[2])
-            console.log(isNaN(celular[2]))
-            console.log(celular[4])
-            console.log(isNaN(celular[4]))
-            console.log(celular[5])
-            console.log(isNaN(celular[5]))
-            console.log(celular[6])
-            console.log(isNaN(celular[6]))
-            console.log(celular[7])
-            console.log(isNaN(celular[7]))
-            console.log(celular[9])
-            console.log(isNaN(celular[9]))
-            console.log(celular[10])
-            console.log(isNaN(celular[10]))
-            console.log(celular[11])
-            console.log(isNaN(celular[11]))
-            console.log(celular[12])
-            console.log(isNaN(celular[12]))
-            
--->
