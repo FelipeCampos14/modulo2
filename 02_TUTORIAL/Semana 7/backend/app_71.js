@@ -6,7 +6,7 @@ const sqlite3 = require('sqlite3').verbose();
 const DBPATH = 'dbUser.db';
 
 const hostname = '127.0.0.1';
-const port = 3071;
+const port = 3179;
 const app = express();
 
 /* Servidor aplicação */

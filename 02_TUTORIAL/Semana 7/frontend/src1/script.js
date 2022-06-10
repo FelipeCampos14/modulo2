@@ -61,7 +61,7 @@ function TestGET(){
 
 /* Função que faz um requisição GET no nosso banco de dados */
 function TestGETDB(){
-    var url = "http://127.0.0.1:3071/users";
+    var url = "http://127.0.0.1:3179/users";
     var resposta;
 
     var xhttp = new XMLHttpRequest();

@@ -1,5 +1,8 @@
 api = 'http://127.0.0.1:3071'
 
+var getResDiv = "#get";
+var getDBResDiv = "#getDB";
+
 // function Text() {
 //     document.write("<p>Este texto foi gerado com js</p>" + 
 //     "<a href='index.html'> voltar para a página original<a>");
@@ -29,6 +32,34 @@ function Voltar() {
     button.innerHTML = "<button id='button' onclick='Text()'>Conquistas Acadêmicas</button>"
 }
 
+/* Função que faz um requisição GET */
+function TestGET(){
+    var url = "https://jsonplaceholder.typicode.com/todos/1";
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", url, false);
+    xhttp.send();//A execução do script pára aqui até a requisição retornar do servidor
+
+    $(getResDiv).append("<br />" + xhttp.responseText);
+    $(getResDiv).append("<br />" + xhttp.responseText.title);
+    console.log(xhttp.responseText);
+}
+
+/* Função que faz um requisição GET no nosso banco de dados */
+function TestGETDB(){
+    var url = "http://127.0.0.1:3071/users";
+    var resposta;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", url, false);
+    xhttp.send();//A execução do script pára aqui até a requisição retornar do servidor
+
+    resposta = JSON.parse(xhttp.responseText);
+    
+    $(getDBResDiv).append("<br /><br />" + JSON.stringify(resposta));
+    $(getDBResDiv).append("<br /><br />* Seleção do atributo 'title' do primeiro usuario:<br />" + resposta[0].title);
+    console.log(xhttp.responseText);
+}
 
 $(document).ready(() => {
     users.list();
@@ -42,18 +73,19 @@ var users = {
             url: api + '/users',
             type: 'GET',
             success: data => {
+                console.log("teste")
                 var tx = '';
-                tx += '<div class="insert" onclick="user.insert()">Inserir</div>';
+                tx += '<div id="button" onclick="user.insert()">Inserir</div>';
                 data.forEach(element => {
                     tx += '<div class="user">';
-                        tx += '<div class="title">' + element.title + '</div>';
+                        tx += '<div class="title">' + element.name + '</div>';
                         tx += '<div class="actions">';
-                            tx += '<div class="action" onclick="user.update(' + element.userId + ',\'' + element.title + '\')">Editar</div>';
-                            tx += '<div class="action" onclick="user.delete(' + element.userId + ')">Excluir</div>';
+                            tx += '<div class="action" onclick="user.update("' + element.email + '","' + element.name + '")">Editar</div>';
+                            tx += '<div class="action" onclick="user.delete("' + element.email + '")">Excluir</div>';
                         tx += '</div>';
                     tx += '</div>';
                 });
-                $('#main').html(tx);
+                $('#main2').html(tx);
             }
         });
         
@@ -64,17 +96,18 @@ var users = {
 var user = {
 
     insert() {
-        var title = prompt('Digite o nome:');
-        if (title) {
-            if (title.trim() != '') {
+        var name = prompt('Digite o nome:');
+        var email = prompt('Digite email:')
+        if (name  && email) {
+            if (name.trim() != '' && email.trim() !='') {
                 $.ajax({
                     type: 'POST',
                     url: api + '/userinsert',
-                    data: {title: title},
+                    data: {name: name, email: email},
                 }).done(function () {
                     users.list();
                 }).fail(function (msg) {
-                    //console.log('FAIL');
+                    console.log('FAIL');
                 }).always(function (msg) {
                     //console.log('ALWAYS');
                 });
@@ -83,15 +116,15 @@ var user = {
     },
 
 
-    update(userId, oldTitle) {
+    update(email, oldEmail) {
 
-        var title = prompt('Digite o novo nome:', oldTitle);
-        if (title) {
-            if (title.trim() != '') {
+        var name = prompt('Digite o novo nome:', oldEmail);
+        if (name) {
+            if (name.trim() != '') {
                 $.ajax({
                     type: 'POST',
                     url: api + '/userupdate',
-                    data: {title: title, userId: userId},
+                    data: {name: name, email: email},
                 }).done(function () {
                     users.list();
                 }).fail(function (msg) {
@@ -103,17 +136,17 @@ var user = {
         }
     },
 
-    delete(userId) {
-
+    delete(email) {
+        console.log("teste")
         if (confirm('Confirma a exclusão?')) {
             $.ajax({
                 type: 'api',
                 url: api + '/userdelete',
-                data: {userId: userId},
+                data: {email: email},
             }).done(function () {
                 users.list();
             }).fail(function (msg) {
-                //console.log('FAIL');
+                console.log('FAIL');
             }).always(function (msg) {
                 //console.log('ALWAYS');
             });
@@ -121,3 +154,4 @@ var user = {
     },
 
 }
+

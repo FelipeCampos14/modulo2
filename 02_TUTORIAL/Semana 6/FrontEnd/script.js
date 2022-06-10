@@ -40,7 +40,7 @@ function ShowResult(res){
 var getResDiv = "#get";
 /* Função que faz uma requisição GET */
 function TestGET(){
-    var url = "https://jsonplaceholder.typicode.com/todos/1";
+    var url = "http://";
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", url, false);
