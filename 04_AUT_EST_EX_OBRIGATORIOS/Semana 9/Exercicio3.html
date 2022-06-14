@@ -7,6 +7,53 @@
     <title>Exercico 3</title>
 </head>
 <body>
-    
+    <input id="nome1" type="text">
+    <input id="nome2" type="text">
+    <input id="nome3" type="text">
+    <button onclick="ordem()">Colocar em ordem</button>
+    <div id="resultadosDiv"></div>
+    <script>
+        function ordem() {
+            var nome1 = document.getElementById("nome1").value;
+            var nome2 = document.getElementById("nome2").value;
+            var nome3 = document.getElementById("nome3").value;
+            var resultados = document.getElementById("resultadosDiv")
+            var ordemNomes = '';
+            
+            for (i=0;i<20;i++) {
+                if (nome1[i] < nome2[i] && nome1 < nome3[i]) {
+                    ordemNomes += nome1
+                    if (nome2[i] < nome3[i]) {
+                        ordemNomes += " "+nome2+" "+nome3;
+                    }
+                    else {
+                        ordemNomes += " "+nome3+" "+nome2;
+                    }
+                    break
+                }  
+                if (nome2[i] < nome1[i] && nome2 < nome3[i]) {
+                    ordemNomes += nome2
+                    if (nome1[i] < nome3[i]) {
+                        ordemNomes += " "+nome1+" "+nome3;
+                    }
+                    else {
+                        ordemNomes += " "+nome3+" "+nome1;
+                    }
+                    break
+                }
+                if (nome3[i] < nome2[i] && nome3 < nome1[i]) {
+                    ordemNomes += nome3
+                    if (nome1[i] < nome2[i]) {
+                        ordemNomes += " "+nome1+" "+nome2;
+                    }
+                    else {
+                        ordemNomes += " "+nome2+" "+nome1;
+                    }
+                    break
+                }  
+            }
+            resultados.innerHTML = ordemNomes;
+        }
+    </script>
 </body>
 </html>

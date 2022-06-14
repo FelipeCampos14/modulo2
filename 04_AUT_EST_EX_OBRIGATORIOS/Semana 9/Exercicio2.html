@@ -9,16 +9,18 @@
 <body>
     <input id="num">
     <button onclick="somar()">somar algoritmos</button>
+    <div id="resultadoDiv"></div>
     <script>
         function somar() {
+            var resultado = document.getElementById("resultadoDiv")
             var num = document.getElementById("num").value;
             var numArray = num.split('');
-            var numOrdenado = numArray.sort();
             var soma = 0;
-            console.log(numOrdenado)
-            for (i = 0; i < numOrdenado.length; i++) {
-                
+            
+            for (i = 0; i < numArray.length; i++) {
+                soma += parseInt(numArray[i])
             }
+            resultado.innerHTML = `A soma dos algarismos é: ${soma}`;
         }    
     </script>
 </body>

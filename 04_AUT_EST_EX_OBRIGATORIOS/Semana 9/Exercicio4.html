@@ -7,13 +7,30 @@
     <title>Exercicio 4</title>
 </head>
 <body>
-    <label>Insira um número</label>
+    <label>Insira o número do termo</label>
     <input id="num">
     <button onclick="fibonacci()">Termo de fibonacci</button>
+    <div id="resultadoDiv"></div>
     <script>
         function fibonacci() {
             var numTermo = document.getElementById("num").value;
+            var resultado = document.getElementById("resultadoDiv");
             var f1 = 1;
+            var f2 = 1;
+            for (i=2;i<numTermo;i++) {
+                var fn = f1 + f2
+                f1 = f2
+                f2 = fn
+            }
+            if (numTermo == 1 || numTermo == 2) {
+                fn = 1;
+            }
+            if (numTermo <= 0) {
+                resultado.innerHTML = "Insira um termo maior que 0!"
+            }
+            else {
+                resultado.innerHTML = "Termo fibonacci é: " + fn;                
+            }
         }
     </script>
 </body>
