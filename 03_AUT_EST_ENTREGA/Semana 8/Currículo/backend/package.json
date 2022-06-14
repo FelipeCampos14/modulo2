@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.2.0",
+  "description": "Servidor Semana 9",
+  "main": "app_08.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "html",
+    "gamefication"
+  ],
+  "author": "Felipe Campos",
+  "license": "MIT"
+}
