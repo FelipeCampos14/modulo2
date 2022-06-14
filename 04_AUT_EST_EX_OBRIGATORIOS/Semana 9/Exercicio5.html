@@ -7,25 +7,32 @@
     <title>Exercicio 5</title>
 </head>
 <body>
-    <input id="termoN">
-    <button onclick="primos()"></button>
+    <input id="termoMin">
+    <input id="termoMax">
+    <br>
+    <button onclick="primos()">Ver os número primos entre os termos</button>
+    <div id="primosDiv"></div>
+
+
     <script>
         function primos() {
-            var termoN = document.getElementById("termoN").value;
+            var termoMax = document.getElementById("termoMax").value;
+            var termoMin = document.getElementById("termoMin").value;
+            var primosDiv = document.getElementById("primosDiv")
             var primos = '';
-            var divisores = 0;
-            for (i=0;i<termoN;i++) {
-                for (j=0;j<termoN/2;j++) {
+            var divisores = [];
+            for (i=termoMin;i<termoMax;i++) {
+                for (j=1;j<termoMax;j++) {
                     if (i%j == 0) {
-                        divisores += 1;    
+                        divisores.push(j);   
                     }   
-                }   
-                if (divisores == 2) {
-                    primos += i;
-                }   
+                }
+                if (divisores.length <= 2) {
+                    primos += i+", ";
+                } 
+                divisores = [];
             }
-            console.log(primos)
-            console.log(divisores)
+            primosDiv.innerHTML = `Esses são são os números primos no intervalo entre ${termoMin} e ${termoMax}: ${primos} `
         }
     </script>
 </body>
