@@ -14,43 +14,49 @@
     <div id="resultadosDiv"></div>
     <script>
         function ordem() {
-            var nome1 = document.getElementById("nome1").value;
-            var nome2 = document.getElementById("nome2").value;
-            var nome3 = document.getElementById("nome3").value;
+            var nome1Bruto = document.getElementById("nome1").value;
+            nome1 = nome1Bruto.toLowerCase();
+            var nome2Bruto = document.getElementById("nome2").value;
+            nome2 = nome2Bruto.toLowerCase();
+            var nome3Bruto = document.getElementById("nome3").value;
+            nome3 = nome3Bruto.toLowerCase();
             var resultados = document.getElementById("resultadosDiv")
             var ordemNomes = '';
             
-            for (i=0;i<20;i++) {
+            for (i=0;i=20;i++) {
                 if (nome1[i] < nome2[i] && nome1 < nome3[i]) {
-                    ordemNomes += nome1
-                    if (nome2[i] < nome3[i]) {
-                        ordemNomes += " "+nome2+" "+nome3;
-                    }
-                    else {
-                        ordemNomes += " "+nome3+" "+nome2;
-                    }
+                    ordemNomes += nome1Bruto
+                        if (nome2[i] < nome3[i]) {
+                            ordemNomes += " "+nome2Bruto+" "+nome3Bruto;
+                        }
+                        else {
+                            ordemNomes += " "+nome3Bruto+" "+nome2Bruto;
+                        }
                     break
-                }  
+                }
                 if (nome2[i] < nome1[i] && nome2 < nome3[i]) {
-                    ordemNomes += nome2
+                    ordemNomes += nome2Bruto
                     if (nome1[i] < nome3[i]) {
-                        ordemNomes += " "+nome1+" "+nome3;
+                        ordemNomes += " "+nome1Bruto+" "+nome3Bruto;
                     }
                     else {
-                        ordemNomes += " "+nome3+" "+nome1;
+                        ordemNomes += " "+nome3Bruto+" "+nome1Bruto;
                     }
                     break
                 }
                 if (nome3[i] < nome2[i] && nome3 < nome1[i]) {
-                    ordemNomes += nome3
-                    if (nome1[i] < nome2[i]) {
-                        ordemNomes += " "+nome1+" "+nome2;
-                    }
-                    else {
-                        ordemNomes += " "+nome2+" "+nome1;
+                    ordemNomes += nome3Bruto
+                    for (j=0;;j++) {
+                        if (nome1[i] < nome2[i]) {
+                            ordemNomes += " "+nome1Bruto+" "+nome2Bruto;
+                        }
+                        else {
+                            ordemNomes += " "+nome2Bruto+" "+nome1Bruto;
+                        }
+                        break    
                     }
                     break
-                }  
+                }
             }
             resultados.innerHTML = ordemNomes;
         }

@@ -13,26 +13,25 @@
     <button onclick="primos()">Ver os número primos entre os termos</button>
     <div id="primosDiv"></div>
 
-
     <script>
         function primos() {
-            var termoMax = document.getElementById("termoMax").value;
-            var termoMin = document.getElementById("termoMin").value;
+            var termoMin = parseInt(document.getElementById("termoMin").value);
+            var termoMax = parseInt(document.getElementById("termoMax").value);         
             var primosDiv = document.getElementById("primosDiv")
             var primos = '';
             var divisores = [];
             for (i=termoMin;i<termoMax;i++) {
                 for (j=1;j<termoMax;j++) {
                     if (i%j == 0) {
-                        divisores.push(j);   
-                    }   
+                        divisores.push(j); 
+                    }
                 }
                 if (divisores.length <= 2) {
                     primos += i+", ";
                 } 
                 divisores = [];
             }
-            primosDiv.innerHTML = `Esses são são os números primos no intervalo entre ${termoMin} e ${termoMax}: ${primos} `
+            primosDiv.innerHTML = `Esses são são os números primos no intervalo entre ${termoMin} e ${termoMax}: ${primos}`
         }
     </script>
 </body>

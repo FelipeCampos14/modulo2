@@ -57,7 +57,7 @@ function TestGETDB(){
     resposta = JSON.parse(xhttp.responseText);
     
     $(getDBResDiv).append("<br /><br />" + JSON.stringify(resposta));
-    $(getDBResDiv).append("<br /><br />* Seleção do atributo 'title' do primeiro usuario:<br />" + resposta[0].title);
+    $(getDBResDiv).append("<br /><br />* Seleção do atributo 'email' do primeiro usuario:<br/>" + resposta[0].email);
     console.log(xhttp.responseText);
 }
 
