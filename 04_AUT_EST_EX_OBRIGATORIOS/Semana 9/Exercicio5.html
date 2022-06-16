@@ -32,6 +32,9 @@
                 divisores = [];
             }
             primosDiv.innerHTML = `Esses são são os números primos no intervalo entre ${termoMin} e ${termoMax}: ${primos}`
+            if (isNaN(termoMax) || isNaN(termoMin)) {
+                primosDiv.innerHTML = `Coloque valores interios`
+            }
         }
     </script>
 </body>
